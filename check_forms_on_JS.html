@@ -1,0 +1,60 @@
+<!--
+Check the data entered on the form by the user in the text entry field. If only one field is empty, then a warning message and cancel the sending of the data from the form. 
+(Проверка формы на введеные данные пользователем в текстовые поля ввода. Если хоть одно поле пустое, тогда выводим предупреждающее сообщение и отменяем отправку данных из формы.)
+-->
+
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<title>Check forms input in text field</title>
+	<style type="text/css">
+        form div input { border-style: solid; border-color: #999; margin-bottom: 10px; }
+        a{background:silver;color:black;border:3px groove silver;text-decoration: none;font-weight:bold}
+        div.button{margin-top:10px}
+    </style>
+	<script>
+		function checkForm(){
+            var f = document.forms[0];
+            var els = f.elements; //save all the form elements in the variable
+            var isEmpty = false; //flag
+            //through the elements in the form of a loop
+            for(var i = 0; i < els.length; i++){
+                // we only need to type text elements
+                if(els[i].type == "text"){
+                    // if the input element is empty ...
+                    if(els[i].value == ""){
+                        //...sets the color of the frame - red
+                        els[i].style.borderColor = "red";
+                        isEmpty = true;
+                    } else { //else...
+                        //...reset frame color
+                        els[i].style.borderColor = "";
+                    }
+                }
+            }
+            //if isEmpty = true
+            if
+                (isEmpty) alert("Fill in all the fields!");
+            else //otherwise, we will send the form
+                f.submit();
+        }	
+	</script>
+	<body>
+		<form id="myForm" name="myForm" action="">
+			<fieldset>
+				<legend>Forms</legend>
+				<div>
+					<label for="txt1">Login</label>
+					<input type="text" name="p1" id="txt1">
+				</div>
+				<div>
+					<label for="txt2">Email</label>
+					<input type="text" name="p2" id="txt2">
+				</div>
+				<div class="button">
+					<a href="javascript:checkForm()">Send the form</a>
+				</div>
+			</fieldset>
+		</form>
+	</body>
+</html>
