@@ -1,0 +1,60 @@
+<!--
+	Using javascript to create the elements for select option
+	(С помощью javascript создаем элементы option для select)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SELECT and OPTION</title>
+    <style>
+        a{visibility: hidden;}
+    </style>
+    <script>
+        /**
+         * A collection of links
+          */
+        var links = new Object();
+        links["Yandex"] = "http://www.yandex.ru";
+        links["Rambler"] = "http://www.rambler.ru";
+        links["Google"] = "http://www.google.com";
+
+        //function is to go to the address selected in the select
+        function goToURL(){
+            var s = document.myForm.selURL; //select the variable s stores
+            var url = s.options[s.selectedIndex].value; //variable stores the selected address which is stored in option
+            location.assign(url); //load/display the address stored in the url variable in the browser
+        }
+    </script>
+</head>
+<body>
+    <h1>Using the SELECT and OPTION</h1>
+    <form action="#" id="myForm" name="myForm">
+        <label for="selURL" disabled>Select address</label>
+        <select name="selURL" id="selURL" disabled></select>
+        <a href="javascript: goToURL();">Go to web address</a>
+    </form>
+
+    <script>
+        //js code is a form of that first broke form
+        //Let's create in the SELECT list of the OPTION element
+        var s = document.myForm.selURL; //select the variable s stores
+        for(var linkName in links){
+            var o = new Option(linkName, links[linkName]);
+            //for cross-browser
+            try {
+                s.add(o, null);
+            } catch(e){
+                s.add(0);
+            }
+        }
+        //We make all the form elements unavailable
+        var f = document.myForm;
+        for(var i = 0; i < f.elements.length; i++){
+            f.elements[i].disabled = false;
+        }
+
+        document.links[0].style.visibility = "visible"; //because the link is hidden in styles, making it open
+    </script>
+</body>
+</html>
